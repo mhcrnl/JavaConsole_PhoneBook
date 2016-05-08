@@ -5,11 +5,13 @@
  */
 package javaconsole_phonebook;
 
+import java.io.Serializable;
+
 /**
  *
  * @author mhcrnl
  */
-public class Contact {
+public class Contact implements Serializable{
     
     private String nume;
     private String prenume;

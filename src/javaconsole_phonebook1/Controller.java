@@ -40,9 +40,9 @@ public class Controller {
     public void afiseazaContacte() {
         
         List<Contact> lista = new ArrayList<Contact>();
-        
-        contact = ps.readContacts(file);
-        System.out.println(contact.toString());
+        Contact[] contacts ;
+        contacts = ps.readContacts(file);
+        System.out.println(contacts.toString());
         
         try {
             lista = ps.readContacts1(file);

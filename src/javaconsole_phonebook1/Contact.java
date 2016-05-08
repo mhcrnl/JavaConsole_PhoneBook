@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author mhcrnl
  */
-public class Contact implements Serializable {
+public class Contact implements Serializable, Comparable<Contact> {
     
     private String nume;
     private String prenume;
@@ -85,6 +85,11 @@ public class Contact implements Serializable {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public int compareTo(Contact o) {
+        return this.nume.compareTo(o.getNume());
     }
     
 }

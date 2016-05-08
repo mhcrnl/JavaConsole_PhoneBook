@@ -15,6 +15,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,20 +36,21 @@ public class PersistentContact {
         } 
     }
    
-    public Contact readContacts(String file){
-        Contact contact;
+    public Contact[] readContacts(String file){
+        Contact contact[] = null;
         try {
             InputStream fis = new FileInputStream(file);
-            ObjectInput oos = new ObjectInputStream(fis);
-            contact = (Contact)oos.readObject();
-            oos.close();
-            System.out.println("Contact: "+contact.toString());
-            return contact;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            try (ObjectInput oos = new ObjectInputStream(fis)) {
+                contact = (Contact[])oos.readObject();
+            }
+            System.out.println("Contact: "+Arrays.toString(contact));
+            //return contact;
+        } catch(ClassNotFoundException ex){
+            System.out.println("Class not found");
         }
-    
+        catch (IOException e) {
+        }
+    return contact;
     }
     
     public List<Contact> readContacts1(String file) throws IOException {
